@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UC Mart | Buy UC</title>
+<!-- Standard favicon for desktop/legacy browsers -->
+  <link rel="shortcut icon" href="/favicon/favicon.ico" type="image/x-icon">
+
+  <!-- Apple iOS icon -->
+  <link rel="apple-touch-icon" href="/favicon/apple-touch-icon.png">
+
+  <!-- Android / Chrome icon -->
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon/android-chrome-192x192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="/favicon/android-chrome-512x512.png">
+
+  <!-- Optional: theme color for mobile browsers -->
+  <meta name="theme-color" content="#ffffff">
+<style>
+  /* ===== Body & Background ===== */
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: url('/images/bg-colorful.jpg') no-repeat center/cover;
+    backdrop-filter: brightness(0.9);
+    overflow: hidden; /* no scroll */
+  }
+
+  @media (max-width: 650px) {
+    body {
+      background: url('/images/bg-mobile.jpg') no-repeat center/cover;
+      background-size: cover;
+    }
+  }
+
+  /* ===== Heading ===== */
+  h1 {
+    font-size: 2.6em;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 45px;
+    letter-spacing: 1px;
+    background: linear-gradient(90deg, #ffedb2, #ffc15e, #ff8a5c);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 15px rgba(255, 209, 102, 0.9), 0 0 25px rgba(255,255,255,0.6);
+    animation: glowText 3s infinite ease-in-out;
+  }
+
+  @keyframes glowText {
+    0%,100% { filter: drop-shadow(0 0 12px #ffc15e); }
+    50% { filter: drop-shadow(0 0 22px #ffefba); }
+  }
+
+  /* ===== Option Section ===== */
+  .option-section {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    align-items: stretch;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 0 15px;
+  }
+
+  .option-card {
+    background: rgba(35,42,69,0.7);
+    border: 2px solid rgba(255,193,94,0.35);
+    border-radius: 18px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+    width: 320px;
+    padding: 25px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    backdrop-filter: blur(10px);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .option-card:hover {
+    transform: translateY(-6px) scale(1.03);
+    box-shadow: 0 10px 36px rgba(255,193,94,0.55);
+  }
+
+  .badge {
+    display: inline-block;
+    background: #ff4081;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 7px 7px 7px 0;
+    padding: 3px 11px;
+    font-size: 0.9em;
+    margin-bottom: 12px;
+  }
+
+  .cheap-badge {
+    background: #49f57b;
+    color: #03331a;
+    border-radius: 7px 7px 0 7px;
+  }
+
+  .uc-icon {
+    width: 60px;
+    height: 60px;
+    margin: 10px 0 16px 0;
+    border-radius: 50%;
+    background: #2c2d3d;
+    display: inline-block;
+    box-shadow: 0 0 15px rgba(255,193,94,0.4);
+  }
+
+  .card-title {
+    font-size: 1.4em;
+    font-weight: bold;
+    color: #ffdf89;
+    text-shadow: 0 1px 0 #292b3e77;
+    margin-bottom: 8px;
+    text-align: center;
+  }
+
+  .card-desc {
+    font-size: 1em;
+    color: #e2e5ff;
+    line-height: 1.4;
+    margin-bottom: 18px;
+    flex-grow: 1;
+    text-align: center;
+  }
+
+  .action-btn {
+    display: inline-block;
+    padding: 13px 36px;
+    border-radius: 9px;
+    text-decoration: none;
+    font-size: 1.1em;
+    font-weight: bold;
+    background: linear-gradient(95deg, #ffc15e 75%, #ffedb2 100%);
+    color: #1a2234;
+    border: none;
+    box-shadow: 0 0 8px #ffc15e77;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .action-btn:hover {
+    background: linear-gradient(95deg, #ffedb2 90%, #ffc15e 100%);
+    color: #232a45;
+    transform: scale(1.05);
+  }
+
+  /* ===== Responsive ===== */
+  @media (max-width: 750px) {
+    h1 { font-size: 1.9em; margin-bottom: 5px; }
+    .option-section { flex-direction: column; gap: 20px; }
+    .option-card { 
+      width: 70%;      /* smaller boxes for mobile */
+      margin: 0 auto;
+      padding: 18px 12px; /* reduce padding */
+    }
+  }
+</style>
+</head>
+<body>
+  <h1>Choose How You Want UC</h1>
+
+  <div class="option-section">
+    <!-- Option 1 -->
+    <div class="option-card">
+      <span class="badge">Demo Fast</span>
+      <img src="/images/uc-image.png" alt="UC" class="uc-icon">
+      <div class="card-title">Get Demo Free UC</div>
+      <div class="card-desc">
+        Try UC with our demo offer — <b>receive UC in just 5 minutes after login!</b><br>
+        No payment needed. Fast, secure and risk-free.<br>
+        <span style="color:#8bfaff;">*Limited time offer*</span>
+      </div>
+      <a class="action-btn" href="login.html">Login to Get Free UC</a>
+    </div>
+
+    <!-- Option 2 -->
+    <div class="option-card">
+      <span class="badge cheap-badge">Super Cheap</span>
+      <img src="/images/uc-image.png" alt="UC" class="uc-icon">
+      <div class="card-title">Buy C@rding UC</div>
+      <div class="card-desc">
+        Get UC in your BGMI account at the <b>lowest price online!</b><br>
+        Safe “C@rding” method — instant UC delivery after purchase.
+      </div>
+      <a class="action-btn" href="/ucpack.html">Buy UC Now</a>
+    </div>
+  </div>
+</body>
+</html>

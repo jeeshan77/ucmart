@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UC Mart | Buy BGMI UC at Lowest Prices</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,100|Teko:100,400,700|Oswald:400,500,700&display=swap" rel="stylesheet">
+  <!-- Standard favicon for desktop/legacy browsers -->
+  <link rel="shortcut icon" href="/favicon/favicon.ico" type="image/x-icon">
+
+  <!-- Apple iOS icon -->
+  <link rel="apple-touch-icon" href="/favicon/apple-touch-icon.png">
+
+  <!-- Android / Chrome icon -->
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon/android-chrome-192x192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="/favicon/android-chrome-512x512.png">
+
+  <!-- Optional: theme color for mobile browsers -->
+  <meta name="theme-color" content="#ffffff">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body, html {
+      width: 100%;
+      height: 100%;
+      font-family: 'Roboto', 'Teko', 'Oswald', Arial, sans-serif;
+      color: #fff;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      background: radial-gradient(ellipse 115% 100% at 70% 20%, #ff912d, #392816 36%, #120d0c 90%);
+    }
+
+    /* Header */
+    #header {
+      width: 100%;
+      background: #141312;
+      border-bottom: 2px solid #181313;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 24px;
+      box-shadow: 0 3px 12px #18131345;
+      z-index: 900;
+    }
+
+    #header .logo img {
+      height: 55px;
+      filter: drop-shadow(0px 1px 0px #ffb34a88);
+    }
+
+    #gnb ul.gnb_menu {
+      display: flex;
+      list-style: none;
+      gap: 28px;
+    }
+
+    #gnb ul.gnb_menu li a {
+      font-family: 'Teko', sans-serif;
+      font-size: 1.1em;
+      font-weight: 700;
+      color: #fff;
+      text-decoration: none;
+      padding: 0 6px 2px 6px;
+      transition: color 0.18s;
+    }
+
+    #gnb ul.gnb_menu li a.active,
+    #gnb ul.gnb_menu li a:hover {
+      color: #ffe19f;
+      border-bottom: 3px solid #ffb34a;
+    }
+
+    /* Main Section */
+    #home {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      padding-left: 5vw;
+      position: relative;
+      width: 100%;
+      background: url('/images/bgmi-homeimg.jpg') no-repeat center/cover,
+                  radial-gradient(ellipse 130% 100% at 50% 30%, #ff8e3c90, #120d0c 99%);
+    }
+
+    .visual_wrap {
+      max-width: 680px;
+    }
+
+    .visual {
+      font-family: 'Teko', 'Oswald', sans-serif;
+      font-size: 4em;
+      font-weight: 800;
+      text-transform: uppercase;
+      margin-bottom: 32px;
+      line-height: 1.1;
+      letter-spacing: 2px;
+      text-shadow: 0 4px 32px #ffba4d99, 0 1px 0 #120d0c;
+    }
+
+    .visual_btn {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      align-items: flex-start;
+    }
+
+    .visual_btn p {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .store_img {
+      height: 60px;
+      cursor: pointer;
+    }
+
+    .btn2, .btn3 {
+      min-width: 220px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Oswald', sans-serif;
+      font-weight: 300;
+      border-radius: 9px;
+      border: none;
+      text-decoration: none;
+      transition: filter 0.17s;
+    }
+
+    .btn2 {
+      background: linear-gradient(90deg, #d77300 10%, #fc990d 85%);
+      color: #fff;
+      box-shadow: 0 2px 11px #ffb34a33, 0 2px 2px #231606;
+    }
+
+    .btn2:hover { filter: brightness(1.1); }
+
+    .btn3 {
+      background: linear-gradient(90deg, #ffb34a 11%, #ffd488 90%);
+      color: #201400;
+      box-shadow: 0 2px 8px #ffb34a33;
+    }
+
+    .btn3:hover { filter: brightness(1.17); }
+
+    /* Footer */
+    #footer {
+      width: 100%;
+      background: #110f0e;
+      border-top: 2px solid #382409;
+      padding: 18px 24px;
+      font-size: 0.95em;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 -1px 16px #38240945;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    #footer .logo img { height: 22px; }
+
+    #footer p, #footer span {
+      color: #ffe8c1;
+      font-size: 0.9em;
+    }
+
+    #footer a {
+      color: #ffe19f;
+      text-decoration: none;
+      margin-left: 12px;
+      transition: color .15s;
+    }
+
+    #footer a:hover { color: #ffb34a; }
+
+    /* ===================
+       MOBILE RESPONSIVE
+       =================== */
+    @media(max-width: 900px) {
+      .visual { font-size: 2.8em; }
+      .store_img { height: 50px; }
+    }
+
+    @media(max-width: 650px) {
+      body, html { overflow-y: auto; }
+      #home {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 100px 5vw 80px;
+        text-align: center;
+        background-position: center top;
+      }
+
+      .visual_wrap {
+        max-width: 90%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .visual {
+        font-size: 2em;
+        margin-bottom: 24px;
+        line-height: 1.2;
+      }
+
+      .visual_btn {
+        align-items: center;
+        gap: 16px;
+      }
+
+      .visual_btn p {
+        justify-content: center;
+      }
+
+      .store_img { height: 44px; }
+
+      .btn2, .btn3 {
+        min-width: 180px;
+        height: 44px;
+        font-size: 0.95em;
+      }
+
+      #footer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 10px;
+        padding: 24px 10px;
+      }
+
+      #footer .logo img { height: 26px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <div id="header">
+    <h1 class="logo"><a href="#"><img src="images/logo.png" alt="Logo"></a></h1>
+    <div id="gnb">
+      <ul class="gnb_menu">
+        <li><a href="#home" class="active">HOME</a></li>
+        <li><a href="/redeem.html">REDEEM</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Home Section -->
+  <section id="home">
+    <div class="visual_wrap">
+      <p class="visual">INDIA KA <br> BATTLEGROUNDS</p>
+      <div class="visual_btn">
+        <!-- Store Buttons -->
+        <p>
+          <a href="https://app.adjust.net.in/m9r6x2t" target="_blank">
+            <img src="images/apple-badge.png" alt="App Store" class="store_img">
+          </a>
+          <a href="https://bit.ly/BGMI_AppStore" target="_blank">
+            <img src="images/google-play-badge.png" alt="Google Play" class="store_img">
+          </a>
+        </p>
+        <!-- UC Button -->
+        <p>
+          <a class="btn2" href="/option.html" target="_blank">
+            BUY UC AT CHEAPEST PRICE
+          </a>
+        </p>
+        <!-- APK Button -->
+        <p>
+          <a class="btn3" download href="https://apkdownload.battlegroundsmobileindia.com/bgmi_4.0.0_homepage_Jawenfls.apk">
+            APK DOWNLOAD
+          </a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <div id="footer">
+    <h6 class="logo"><a href="#"><img src="images/logo.png" alt="Footer Logo"></a></h6>
+    <span>© 2024 UC Mart, Inc. All rights reserved.</span>
+    <p>
+      <a href="/privacypolicy.html">Privacy Policy</a>
+      <a href="/termsandservices.html">Terms of Service</a>
+    </p>
+  </div>
+
+</body>
+</html>

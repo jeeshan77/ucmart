@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BGMI Redeem Code</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,100|Teko:100,400,700|Oswald:400,500,700&display=swap" rel="stylesheet">
+
+  <!-- Favicons -->
+  <link rel="shortcut icon" href="/favicon/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" href="/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon/android-chrome-192x192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="/favicon/android-chrome-512x512.png">
+  <meta name="theme-color" content="#ffffff">
+
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      font-family: 'Roboto', 'Teko', 'Oswald', Arial, sans-serif;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      background: url('/images/redeem-bg.jpg') no-repeat center/cover,
+                  radial-gradient(ellipse 130% 100% at 50% 30%, #ff8e3c90, #120d0c 99%);
+    }
+
+    /* Header */
+    #header {
+      width: 100%;
+      background: #141312;
+      border-bottom: 2px solid #181313;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 24px;
+      box-shadow: 0 3px 12px #18131345;
+      z-index: 900;
+      flex-shrink: 0;
+    }
+
+    #header .logo img { height: 55px; filter: drop-shadow(0px 1px 0px #ffb34a88); }
+
+    #gnb ul.gnb_menu { display: flex; list-style: none; gap: 28px; }
+    #gnb ul.gnb_menu li a {
+      font-family: 'Teko', sans-serif;
+      font-size: 1.1em;
+      font-weight: 700;
+      color: #fff;
+      text-decoration: none;
+      padding: 0 6px 2px 6px;
+      transition: color 0.18s;
+    }
+    #gnb ul.gnb_menu li a.active,
+    #gnb ul.gnb_menu li a:hover {
+      color: #ffe19f;
+      border-bottom: 3px solid #ffb34a;
+    }
+
+    /* Redeem Section */
+    .redeem-section {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0 5vw;
+      position: relative;
+    }
+
+    .redeem-container {
+      background: rgba(0,0,0,0.75);
+      padding: 38px 30px;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 420px;
+      color: #fff;
+      box-shadow: 0 4px 20px #00000080;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .redeem-container h1 {
+      font-family: 'Teko', sans-serif;
+      font-size: 2.2em;
+      margin-bottom: 20px;
+      letter-spacing: 1px;
+      text-shadow: 0 3px 12px #ffb34a55;
+    }
+
+    .redeem-container form { display: flex; flex-direction: column; gap: 16px; }
+    .redeem-container input[type="text"] {
+      padding: 12px 10px;
+      font-size: 1em;
+      border-radius: 8px;
+      border: none;
+      outline: none;
+    }
+
+    .redeem-container button {
+      padding: 12px;
+      font-size: 1.05em;
+      font-weight: bold;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      background: linear-gradient(90deg, #be6400 10%, #ffb34a 85%);
+      color: #fff;
+      transition: filter 0.2s;
+    }
+    .redeem-container button:hover { filter: brightness(1.15); }
+
+    /* Footer */
+    #footer {
+      width: 100%;
+      background: #110f0e;
+      border-top: 2px solid #382409;
+      padding: 14px 24px;
+      font-size: 0.9em;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 -1px 16px #38240945;
+      flex-shrink: 0;
+    }
+    #footer .logo img { height: 22px; }
+    #footer p, #footer span { color: #ffe8c1; font-size: 0.9em; }
+    #footer a { color: #ffe19f; text-decoration: none; margin-left: 12px; transition: color .15s; }
+    #footer a:hover { color: #ffb34a; }
+
+    /* Responsive tweaks */
+    @media (max-height: 600px) {
+      #header .logo img { height: 45px; }
+      .redeem-container { padding: 28px 22px; }
+      .redeem-container h1 { font-size: 1.8em; margin-bottom: 15px; }
+      #footer { padding: 10px 16px; font-size: 0.8em; }
+    }
+    @media (max-width: 650px) {
+      #header .logo img { height: 48px; }
+      .redeem-container { max-width: 340px; padding: 28px 20px; }
+      .redeem-container h1 { font-size: 1.9em; }
+      #footer { flex-direction: column; gap: 8px; text-align: center; }
+    }
+
+    /* Custom popup styles */
+    #popupOverlay {
+      position: fixed;
+      top:0; left:0; width:100%; height:100%;
+      background: rgba(0,0,0,0.65);
+      display: flex; justify-content: center; align-items: center;
+      z-index: 10000;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.25s ease-in-out;
+    }
+   
+    #popupOverlay.show { opacity:1; pointer-events:auto; }
+    #popupBox {
+      background: linear-gradient(135deg, #ffb34a, #be6400);
+      padding: 30px 25px;
+      border-radius: 14px;
+      max-width: 350px;
+      width: 90%;
+      text-align: center;
+      color: #fff;
+      font-family: 'Teko', sans-serif;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+      transform: scale(0.8);
+      transition: transform 0.25s ease-in-out;
+    }
+    #popupOverlay.show #popupBox { transform: scale(1); }
+    #popupBox h2 { font-size: 1.6em; margin-bottom: 12px; text-shadow: 0 2px 6px #000; }
+    #popupBox p { font-size: 1.5em; margin-bottom: 18px; }
+    #popupBox button {
+      padding: 10px 18px;
+      font-size: 1em;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      background: #141312;
+      color: #ffb34a;
+      transition: all 0.2s ease-in-out;
+    }
+    #popupBox button:hover { background: #ffb34a; color: #141312; }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <div id="header">
+    <h1 class="logo"><a href="/index.html"><img src="images/logo.png" alt="Logo"></a></h1>
+    <div id="gnb">
+      <ul class="gnb_menu">
+        <li><a href="/index.html">HOME</a></li>
+        <li><a href="/redeem.html" class="active">REDEEM</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Redeem Section -->
+  <section class="redeem-section">
+    <div class="redeem-container">
+      <h1>BATTLEGROUNDS MOBILE INDIA<br>CODE REDEMPTION</h1>
+      <form id="redeemForm">
+        <input type="text" id="characterId" placeholder="Character ID" required>
+        <input type="text" id="redeemCode" placeholder="Redeem Code" required>
+        <button type="submit">Redeem Now</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <div id="footer">
+    <h6 class="logo"><a href="#"><img src="images/logo.png" alt="Footer Logo"></a></h6>
+    <span>© 2023 UC Mart, Inc. All rights reserved.</span>
+    <p>
+      <a href="/privacy">Privacy Policy</a>
+      <a href="/terms">Terms of Service</a>
+    </p>
+  </div>
+
+  <!-- Custom Popup -->
+  <div id="popupOverlay">
+    <div id="popupBox">
+      <h2 id="popupTitle">Success!</h2>
+      <p id="popupMessage">Your code has been redeemed successfully.</p>
+      <button id="popupCloseBtn">OK</button>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('redeemForm');
+    const popupOverlay = document.getElementById('popupOverlay');
+    const popupTitle = document.getElementById('popupTitle');
+    const popupMessage = document.getElementById('popupMessage');
+    const popupCloseBtn = document.getElementById('popupCloseBtn');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const charId = document.getElementById('characterId').value.trim();
+      const code = document.getElementById('redeemCode').value.trim();
+
+      if(charId && code) {
+        popupTitle.textContent = "✅ Redeemed!";
+        popupMessage.textContent = "Your code has been successfully redeemed.\nCheck your BGMI in-game mail.";
+        popupOverlay.classList.add('show');
+        form.reset();
+      } else {
+        popupTitle.textContent = "⚠️ Oops!";
+        popupMessage.textContent = "Please fill in both Character ID and Redeem Code!";
+        popupOverlay.classList.add('show');
+      }
+    });
+
+    popupCloseBtn.addEventListener('click', () => {
+      popupOverlay.classList.remove('show');
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UC Mart | Payment Gateway</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- Standard favicon for desktop/legacy browsers -->
+  <link rel="shortcut icon" href="/favicon/favicon.ico" type="image/x-icon">
+
+  <!-- Apple iOS icon -->
+  <link rel="apple-touch-icon" href="/favicon/apple-touch-icon.png">
+
+  <!-- Android / Chrome icon -->
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon/android-chrome-192x192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="/favicon/android-chrome-512x512.png">
+
+  <!-- Optional: theme color for mobile browsers -->
+  <meta name="theme-color" content="#ffffff">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif; }
+  body { background: linear-gradient(135deg,#0f1629,#1a2234); color:#fff; display:flex; justify-content:center; align-items:center; min-height:100vh; padding:20px; }
+  .container { width:100%; max-width:400px; background:rgba(255,255,255,0.05); backdrop-filter:blur(12px); border-radius:20px; padding:40px 30px; text-align:center; box-shadow:0 0 25px rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); }
+  h1 { font-size:1.6rem; margin-bottom:10px; }
+  p { font-size:0.9rem; color:#ccc; margin-bottom:20px; }
+  .amount-box { background: rgba(255,255,255,0.1); padding:12px 15px; border-radius:10px; font-size:1.1rem; margin-bottom:20px; font-weight:500; }
+  .qr-section img { width:160px; height:160px; border-radius:10px; border:1px solid rgba(255,255,255,0.2); margin-bottom:20px; }
+  form { display:flex; flex-direction:column; gap:12px; align-items:flex-start; }
+  label { display:flex; align-items:center; gap:12px; background: rgba(255,255,255,0.07); padding:10px 14px; border-radius:12px; width:100%; cursor:pointer; transition:all 0.3s ease; }
+  label:hover { background: rgba(255,255,255,0.15); }
+  input[type="radio"] { accent-color:#4f8bff; width:18px; height:18px; }
+  label img { width:24px; height:24px; border-radius:4px; }
+  .purchase-btn { width:100%; margin-top:20px; padding:12px; border:none; background:#4f8bff; color:#fff; font-size:1rem; border-radius:10px; cursor:pointer; transition:0.3s; }
+  .purchase-btn:hover { background:#2f6efc; transform:scale(1.05); }
+  footer { font-size:0.8rem; color:#888; margin-top:20px; text-align:center; width:100%; }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Complete Your Payment</h1>
+  <p>Please select a payment method below:</p>
+
+  <div class="amount-box" id="amountDisplay">Amount: INR 0</div>
+
+  <div class="qr-section">
+    <img id="upiQr" src="" alt="UPI QR">
+  </div>
+
+  <form id="paymentForm">
+    <label><input type="radio" name="payment" value="gpay"><img src="https://upload.wikimedia.org/wikipedia/commons/5/5a/Google_Pay_%28GPay%29_Logo.svg" alt=""> Google Pay</label>
+    <label><input type="radio" name="payment" value="phonepe"><img src="https://upload.wikimedia.org/wikipedia/commons/0/04/PhonePe-Logo.svg" alt=""> PhonePe</label>
+    <label><input type="radio" name="payment" value="paytm"><img src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Paytm_logo.png" alt=""> Paytm</label>
+    <label><input type="radio" name="payment" value="card"><img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Visa.svg" alt=""> Debit / Credit Card</label>
+
+    <button type="button" class="purchase-btn" onclick="redirectToPayment()">Pay Now</button>
+  </form>
+
+  <footer>© 2024 UC Mart | Secure Payment Gateway</footer>
+</div>
+
+<script>
+const urlParams = new URLSearchParams(window.location.search);
+const amount = urlParams.get('amount') || '1';
+const userId = urlParams.get('user') || '';
+
+const upiId = "fftitangaming-1@oksbi";
+const upiName = "FFTitanGaming";
+
+// Generate UPI link with amount
+const upiLink = `upi://pay?pa=${upiId}&pn=${upiName}&am=${amount}&cu=INR`;
+
+// Update QR code and amount display
+document.getElementById('upiQr').src = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(upiLink)}`;
+document.getElementById('amountDisplay').innerText = `Pay INR ${amount} (User ID: ${userId})`;
+
+function redirectToPayment() {
+  const selected = document.querySelector('input[name="payment"]:checked');
+  if(!selected) { alert("Please select a payment method."); return; }
+
+  if(selected.value === "gpay" || selected.value === "phonepe" || selected.value === "paytm") {
+    window.location.href = upiLink;
+  } else {
+    alert("Debit/Credit card payment is currently unavailable. Please use UPI.");
+  }
+}
+</script>
+
+</body>
+</html>
