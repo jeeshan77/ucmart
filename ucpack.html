@@ -1,55 +1,187 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<title>UC Mart | Choose UC Pack</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- Standard favicon for desktop/legacy browsers -->
-  <link rel="shortcut icon" href="/favicon/favicon.ico" type="image/x-icon">
+    <meta charset="UTF-8">
+    <title>UC Mart | Choose UC Pack</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Standard favicon for desktop/legacy browsers -->
+    <link rel="shortcut icon" href="/favicon/favicon.ico" type="image/x-icon">
 
-  <!-- Apple iOS icon -->
-  <link rel="apple-touch-icon" href="/favicon/apple-touch-icon.png">
+    <!-- Apple iOS icon -->
+    <link rel="apple-touch-icon" href="/favicon/apple-touch-icon.png">
 
-  <!-- Android / Chrome icon -->
-  <link rel="icon" type="image/png" sizes="192x192" href="/favicon/android-chrome-192x192.png">
-  <link rel="icon" type="image/png" sizes="512x512" href="/favicon/android-chrome-512x512.png">
+    <!-- Android / Chrome icon -->
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/favicon/android-chrome-512x512.png">
 
-  <!-- Optional: theme color for mobile browsers -->
-  <meta name="theme-color" content="#ffffff">
-<style>
-    body { background: #1a2234; color: #fff; font-family: 'Segoe UI', Arial, sans-serif; margin:0; padding:0; }
-    .container { max-width: 900px; margin: 40px auto; padding: 30px 20px 36px 20px; background: #242f4b; border-radius: 15px; box-shadow:0 0 18px rgba(0,0,0,0.15);}
-    h1,h2{color:#fff;margin-bottom:18px;}
-    label, .subtext {font-size:1.09em;color:#eee;}
-    .user-id-section {margin-bottom:30px;}
-    .user-id-section input {width:100%;padding:11px;border:none;border-radius:6px;font-size:1.07em;margin-bottom:10px;background:#151a26;color:#fff;}
-    .subtext {color:#b5b5b5;font-size:0.97em;margin-top:0;}
-    .select-amount {margin:30px 0 20px 0;}
-    .package-grid {display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
-    .package-card {background:#1d253a;border-radius:13px;padding:17px 12px;min-height:100px;display:flex;align-items:center;gap:14px;width:100%;box-sizing:border-box;cursor:pointer;border:2px solid transparent;transition:border-color 0.2s, box-shadow 0.2s;}
-    .package-card:hover, .package-card input[type="radio"]:checked ~ .package-info {border-color: #ffc15e;}
-    .radio-select {accent-color:#ffc15e;width:18px;height:18px;margin-right:13px;}
-    .uc-img {width:45px;height:45px;object-fit:contain;}
-    .package-info {flex:1;display:flex;flex-direction:column;}
-    .uc-amount {font-size:1.13em;font-weight:600;}
-    .price {color:#ffc15e;font-size:1.07em;margin-top:3px;}
-    .form-btn {margin-top:34px;padding:12px 34px;background:#ffc15e;color:#242f4b;border:none;font-size:1.1em;border-radius:8px;cursor:pointer;font-weight:bold;transition:background 0.18s;}
-    .form-btn:hover {background:#ffe096;color:#151a26;}
-    @media(max-width:900px){.container{max-width:98vw;padding:7vw 2vw 12vw 2vw;}.package-grid{grid-template-columns:repeat(2,1fr);}}
-    @media(max-width:600px){.package-grid{grid-template-columns:1fr;}.package-card{min-height:86px;}}
-</style>
+    <!-- Optional: theme color for mobile browsers -->
+    <meta name="theme-color" content="#ffffff">
+    <style>
+        body {
+            background: #1a2234;
+            color: #fff;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 30px 20px 36px 20px;
+            background: #242f4b;
+            border-radius: 15px;
+            box-shadow: 0 0 18px rgba(0, 0, 0, 0.15);
+        }
+
+        h1,
+        h2 {
+            color: #fff;
+            margin-bottom: 18px;
+        }
+
+        label,
+        .subtext {
+            font-size: 1.09em;
+            color: #eee;
+        }
+
+        .user-id-section {
+            margin-bottom: 30px;
+        }
+
+        .user-id-section input {
+            width: 100%;
+            padding: 11px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.07em;
+            margin-bottom: 10px;
+            background: #151a26;
+            color: #fff;
+        }
+
+        .subtext {
+            color: #b5b5b5;
+            font-size: 0.97em;
+            margin-top: 0;
+        }
+
+        .select-amount {
+            margin: 30px 0 20px 0;
+        }
+
+        .package-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .package-card {
+            background: #1d253a;
+            border-radius: 13px;
+            padding: 17px 12px;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            width: 100%;
+            box-sizing: border-box;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .package-card:hover,
+        .package-card input[type="radio"]:checked~.package-info {
+            border-color: #ffc15e;
+        }
+
+        .radio-select {
+            accent-color: #ffc15e;
+            width: 18px;
+            height: 18px;
+            margin-right: 13px;
+        }
+
+        .uc-img {
+            width: 45px;
+            height: 45px;
+            object-fit: contain;
+        }
+
+        .package-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .uc-amount {
+            font-size: 1.13em;
+            font-weight: 600;
+        }
+
+        .price {
+            color: #ffc15e;
+            font-size: 1.07em;
+            margin-top: 3px;
+        }
+
+        .form-btn {
+            margin-top: 34px;
+            padding: 12px 34px;
+            background: #ffc15e;
+            color: #242f4b;
+            border: none;
+            font-size: 1.1em;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.18s;
+        }
+
+        .form-btn:hover {
+            background: #ffe096;
+            color: #151a26;
+        }
+
+        @media(max-width:900px) {
+            .container {
+                max-width: 98vw;
+                padding: 7vw 2vw 12vw 2vw;
+            }
+
+            .package-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media(max-width:600px) {
+            .package-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .package-card {
+                min-height: 86px;
+            }
+        }
+    </style>
 </head>
+
 <body>
-<div class="container">
-    <form id="ucForm">
-        <h1>Enter BGMI User ID</h1>
-        <div class="user-id-section">
-            <input type="text" id="userId" placeholder="User ID" required>
-            <div class="subtext">To find your User ID, Open BGMI and click on your avatar in the top-left corner of the screen. Your User ID will be displayed above your avatar picture. Please input the complete User ID here, e.g. 58000001411.</div>
-        </div>
-        <h2 class="select-amount">Select Amount</h2>
-        <div class="package-grid">
-                 <label class="package-card">
+    <div class="container">
+        <form id="ucForm">
+            <h1>Enter BGMI User ID</h1>
+            <div class="user-id-section">
+                <input type="text" id="userId" placeholder="User ID" required>
+                <div class="subtext">To find your User ID, Open BGMI and click on your avatar in the top-left corner of
+                    the screen. Your User ID will be displayed above your avatar picture. Please input the complete User
+                    ID here, e.g. 58000001411.</div>
+            </div>
+            <h2 class="select-amount">Select Amount</h2>
+            <div class="package-grid">
+                <label class="package-card">
                     <input class="radio-select" type="radio" name="uc-package" value="299">
                     <img class="uc-img" src="/images/uc-image.png" alt="UC">
                     <div class="package-info">
@@ -155,25 +287,25 @@
                         <span class="price">INR 1399.00</span>
                     </div>
                 </label>
-        </div>
-        <button type="submit" class="form-btn">Proceed</button>
-    </form>
-</div>
 
-<script>
-document.getElementById('ucForm').addEventListener('submit', function(e){
-    e.preventDefault();
-    const userId = document.getElementById('userId').value.trim();
-    const selectedPackage = document.querySelector('input[name="uc-package"]:checked');
-    if(!userId || !selectedPackage){
-        alert("Please enter User ID and select a package.");
-        return;
-    }
-    const amount = selectedPackage.value;
-    window.location.href = `payment.html?user=${encodeURIComponent(userId)}&amount=${encodeURIComponent(amount)}`;
-});
-</script>
+            </div>
+            <button type="submit" class="form-btn">Proceed</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('ucForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const userId = document.getElementById('userId').value.trim();
+            const selectedPackage = document.querySelector('input[name="uc-package"]:checked');
+            if (!userId || !selectedPackage) {
+                alert("Please enter User ID and select a package.");
+                return;
+            }
+            const amount = selectedPackage.value;
+            window.location.href = `payment.html?user=${encodeURIComponent(userId)}&amount=${encodeURIComponent(amount)}`;
+        });
+    </script>
 </body>
+
 </html>
-
-
