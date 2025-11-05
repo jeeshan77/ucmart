@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="/favicon/favicon.ico" type="image/x-icon">
+
+  <!-- Apple iOS icon -->
+  <link rel="apple-touch-icon" href="/favicon/apple-touch-icon.png">
+
+  <!-- Android / Chrome icon -->
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon/android-chrome-192x192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="/favicon/android-chrome-512x512.png">
+  <title>Help & Support — UC Mart</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #ffffff;
+      color: #222;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 50px auto;
+      padding: 40px;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    }
+
+    h1 {
+      text-align: center;
+      color: #111;
+      margin-bottom: 20px;
+      font-size: 2rem;
+    }
+
+    p {
+      font-size: 1rem;
+      color: #555;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    .refund-section {
+      text-align: center;
+      margin: 40px 0;
+    }
+
+    .refund-section h2 {
+      color: #000;
+      margin-bottom: 8px;
+      font-size: 1.4rem;
+    }
+
+    .refund-btn {
+      background: linear-gradient(135deg, #4CAF50, #2E7D32);
+      color: #fff;
+      border: none;
+      padding: 14px 32px;
+      font-size: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+    }
+
+    .refund-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+    }
+
+    .contact-section {
+      margin-top: 50px;
+    }
+
+    .contact-section h3 {
+      text-align: center;
+      color: #000;
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    input, textarea {
+      padding: 12px 15px;
+      font-size: 1rem;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      outline: none;
+      transition: border 0.3s ease;
+    }
+
+    input:focus, textarea:focus {
+      border-color: #4CAF50;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .submit-btn {
+      background: #007bff;
+      color: #fff;
+      border: none;
+      padding: 12px;
+      font-size: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 123, 255, 0.2);
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      background: #0056b3;
+    }
+
+    .footer-text {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #777;
+      margin-top: 40px;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Help & Support</h1>
+    <p>Need assistance with your UC purchase? We're here to help you with refunds, issues, and more.</p>
+
+    <div class="refund-section">
+      <h2>Want a 100% Refund?</h2>
+      <p>If your UC hasn’t been delivered or you’ve faced any issue, request a full refund below.</p>
+      <a href="/verifyaccount.html"><button class="refund-btn">Request a Refund</button></a>
+    </div>
+
+    <div class="contact-section">
+      <h3>Facing an Issue? Contact Us</h3>
+      <p>Share your problem with us and our support team will respond within 24 hours.</p>
+      
+      <form action="" method="POST">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <textarea name="message" placeholder="Write your message here..." required></textarea>
+        <button type="submit" class="submit-btn">Send Message</button>
+      </form>
+    </div>
+
+    <p class="footer-text">© 2025 UC Mart — All Rights Reserved.</p>
+  </div>
+</body>
+</html>
