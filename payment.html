@@ -36,13 +36,18 @@
 
 <div class="container">
   <h1>Complete Your Payment</h1>
-  <p>Scan QR or click Pay Now to open UPI app.</p>
+  <p>Scan the QR below or click Pay Now to open your UPI app.</p>
 
   <div class="amount-box" id="amountDisplay">Amount: INR 0</div>
 
   <div class="qr-section">
-    <img id="upiQr" src="" alt="UPI QR">
+    <!-- 👇 Replace this src with your uploaded QR image path -->
+    <img id="upiQr" src="images/my-upi-qr.png" alt="UPI QR">
   </div>
+  <p style="font-size:0.8em;color:#999;margin-top:-10px;">
+  *PhonePe users, please enter the amount manually.
+</p>
+
 
   <form id="paymentForm">
     <label>
@@ -69,17 +74,13 @@
   <footer>© 2024 UC Mart | Secure Payment Gateway</footer>
 </div>
 
-<script>
+<!-- <script>
 const urlParams = new URLSearchParams(window.location.search);
 const amount = urlParams.get('amount') || '1';
 const userId = urlParams.get('user') || '';
 
 const upiId = "fftitangaming-1@oksbi";
 const upiName = "FFTitanGaming";
-
-/* Static QR (without amount) */
-const upiLinkNoAmount = `upi://pay?pa=${upiId}&pn=${upiName}&cu=INR`;
-document.getElementById('upiQr').src = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(upiLinkNoAmount)}`;
 
 /* Display amount text */
 document.getElementById('amountDisplay').innerText = `Pay INR ${amount}${userId ? ' (User ID: ' + userId + ')' : ''}`;
@@ -91,6 +92,34 @@ function redirectToPayment() {
 
   const upiWithAmount = `upi://pay?pa=${upiId}&pn=${upiName}&am=${amount}&cu=INR`;
   window.location.href = upiWithAmount;
+}
+</script> -->
+<script>
+const urlParams = new URLSearchParams(window.location.search);
+const amount = urlParams.get('amount') || '1';
+const userId = urlParams.get('user') || '';
+
+const upiId = "fftitangaming-1@oksbi";
+const upiName = "FFTitanGaming";
+
+document.getElementById('amountDisplay').innerText = `Pay INR ${amount}${userId ? ' (User ID: ' + userId + ')' : ''}`;
+
+function redirectToPayment() {
+  const selected = document.querySelector('input[name="payment"]:checked');
+  if (!selected) { 
+    alert("Please select a payment method."); 
+    return; 
+  }
+
+  // 🔹 Construct UPI link with amount
+  let upiLink = `upi://pay?pa=${upiId}&pn=${upiName}&am=${amount}&cu=INR`;
+
+  // 🔸 For PhonePe — remove amount (to avoid ₹2000 limit issue)
+  if (selected.value === "phonepe") {
+    upiLink = `upi://pay?pa=${upiId}&pn=${upiName}&cu=INR`;
+  }
+
+  window.location.href = upiLink;
 }
 </script>
 
