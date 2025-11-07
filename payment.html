@@ -5,54 +5,30 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>UC Mart | Payment Gateway</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="shortcut icon" href="/favicon/favicon.ico" type="image/x-icon">
-<link rel="apple-touch-icon" href="/favicon/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="192x192" href="/favicon/android-chrome-192x192.png">
-<link rel="icon" type="image/png" sizes="512x512" href="/favicon/android-chrome-512x512.png">
-<meta name="theme-color" content="#ffffff">
 <style>
   * { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif; }
   body { background:#f7f9fc; color:#1a1a1a; display:flex; justify-content:center; align-items:center; min-height:100vh; padding:20px; }
-
   .container {
     width:100%; max-width:400px; background:#fff; border-radius:20px; padding:40px 30px;
     text-align:center; box-shadow:0 10px 25px rgba(0,0,0,0.08); border:1px solid #e0e0e0;
-    transition:0.3s;
   }
-
-  .container:hover {
-    box-shadow:0 15px 30px rgba(0,0,0,0.1);
-  }
-
   h1 { font-size:1.6rem; margin-bottom:10px; color:#222; }
   p { font-size:0.95rem; color:#555; margin-bottom:20px; }
-
-  .amount-box {
-    background: #f0f4f8; padding:12px 15px; border-radius:10px; font-size:1.1rem; margin-bottom:20px; font-weight:500; color:#333;
-  }
-
+  .amount-box { background:#f0f4f8; padding:12px 15px; border-radius:10px; font-size:1.1rem; margin-bottom:20px; font-weight:500; color:#333; }
   .qr-section img { width:160px; height:160px; border-radius:12px; border:1px solid #ddd; margin-bottom:20px; }
-
   form { display:flex; flex-direction:column; gap:12px; align-items:flex-start; }
-
   label {
     display:flex; align-items:center; gap:12px; background:#f5f7fa; padding:10px 14px; border-radius:12px;
     width:100%; cursor:pointer; transition:all 0.3s ease; border:1px solid #e0e0e0;
   }
-
   label:hover { background:#e6ebf1; }
-
   input[type="radio"] { accent-color:#4f8bff; width:18px; height:18px; }
-
   label img { width:32px; height:32px; border-radius:6px; }
-
   .purchase-btn {
     width:100%; margin-top:20px; padding:12px; border:none; background:#4f8bff; color:#fff; font-size:1rem;
     border-radius:10px; cursor:pointer; transition:0.3s; font-weight:500;
   }
-
   .purchase-btn:hover { background:#2f6efc; transform:scale(1.05); }
-
   footer { font-size:0.8rem; color:#888; margin-top:20px; text-align:center; width:100%; }
 </style>
 </head>
@@ -60,7 +36,7 @@
 
 <div class="container">
   <h1>Complete Your Payment</h1>
-  <p>Please select a payment method below:</p>
+  <p>Scan QR or click Pay Now to open UPI app.</p>
 
   <div class="amount-box" id="amountDisplay">Amount: INR 0</div>
 
@@ -87,12 +63,6 @@
       Paytm
     </label>
 
-    <label>
-      <input type="radio" name="payment" value="card">
-      <img src="https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/visa.svg" alt="Visa">
-      Debit / Credit Card
-    </label>
-
     <button type="button" class="purchase-btn" onclick="redirectToPayment()">Pay Now</button>
   </form>
 
@@ -107,20 +77,20 @@ const userId = urlParams.get('user') || '';
 const upiId = "fftitangaming-1@oksbi";
 const upiName = "FFTitanGaming";
 
-const upiLink = `upi://pay?pa=${upiId}&pn=${upiName}&am=${amount}&cu=INR`;
+/* Static QR (without amount) */
+const upiLinkNoAmount = `upi://pay?pa=${upiId}&pn=${upiName}&cu=INR`;
+document.getElementById('upiQr').src = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(upiLinkNoAmount)}`;
 
-document.getElementById('upiQr').src = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(upiLink)}`;
+/* Display amount text */
 document.getElementById('amountDisplay').innerText = `Pay INR ${amount}${userId ? ' (User ID: ' + userId + ')' : ''}`;
 
+/* On click Pay Now — redirect with amount */
 function redirectToPayment() {
   const selected = document.querySelector('input[name="payment"]:checked');
   if(!selected) { alert("Please select a payment method."); return; }
 
-  if(selected.value === "gpay" || selected.value === "phonepe" || selected.value === "paytm") {
-    window.location.href = upiLink;
-  } else {
-    alert("Debit/Credit card payment is currently unavailable. Please use UPI.");
-  }
+  const upiWithAmount = `upi://pay?pa=${upiId}&pn=${upiName}&am=${amount}&cu=INR`;
+  window.location.href = upiWithAmount;
 }
 </script>
 
