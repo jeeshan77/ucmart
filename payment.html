@@ -18,12 +18,15 @@
   .qr-section img { width:160px; height:160px; border-radius:12px; border:1px solid #ddd; margin-bottom:20px; }
   form { display:flex; flex-direction:column; gap:12px; align-items:flex-start; }
   label {
-    display:flex; align-items:center; gap:12px; background:#f5f7fa; padding:10px 14px; border-radius:12px;
+    display:flex; flex-direction:column; align-items:flex-start; gap:4px;
+    background:#f5f7fa; padding:10px 14px; border-radius:12px;
     width:100%; cursor:pointer; transition:all 0.3s ease; border:1px solid #e0e0e0;
   }
+  .label-top { display:flex; align-items:center; gap:12px; width:100%; }
   label:hover { background:#e6ebf1; }
   input[type="radio"] { accent-color:#4f8bff; width:18px; height:18px; }
   label img { width:32px; height:32px; border-radius:6px; }
+  small { font-size:0.75rem; color:#999; margin-left:34px; }
   .purchase-btn {
     width:100%; margin-top:20px; padding:12px; border:none; background:#4f8bff; color:#fff; font-size:1rem;
     border-radius:10px; cursor:pointer; transition:0.3s; font-weight:500;
@@ -45,27 +48,41 @@
     <img id="upiQr" src="images/my-upi-qr.png" alt="UPI QR">
   </div>
   <p style="font-size:0.8em;color:#999;margin-top:-10px;">
-  *PhonePe users, please enter the amount manually.
-</p>
-
+    *PhonePe users, please enter the amount manually.
+  </p>
 
   <form id="paymentForm">
     <label>
-      <input type="radio" name="payment" value="gpay">
-      <img src="https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/googlepay.svg" alt="Google Pay">
-      Google Pay
+      <div class="label-top">
+        <input type="radio" name="payment" value="gpay">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/googlepay.svg" alt="Google Pay">
+        <span>Google Pay</span>
+      </div>
     </label>
 
     <label>
-      <input type="radio" name="payment" value="phonepe">
-      <img src="https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/phonepe.svg" alt="PhonePe">
-      PhonePe
+      <div class="label-top">
+        <input type="radio" name="payment" value="phonepe">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/phonepe.svg" alt="PhonePe">
+        <span>PhonePe</span>
+      </div>
+      <small>(Scan QR)</small>
     </label>
 
     <label>
-      <input type="radio" name="payment" value="paytm">
-      <img src="https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/paytm.svg" alt="Paytm">
-      Paytm
+      <div class="label-top">
+        <input type="radio" name="payment" value="paytm">
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/paytm.svg" alt="Paytm">
+        <span>Paytm</span>
+      </div>
+    </label>
+
+    <label>
+      <div class="label-top">
+        <input type="radio" name="payment" value="otherupi">
+        <img src="images/upi_logo_icon_169316.png" alt="Other UPI">
+        <span>Other UPI App</span>
+      </div>
     </label>
 
     <button type="button" class="purchase-btn" onclick="redirectToPayment()">Pay Now</button>
@@ -74,26 +91,6 @@
   <footer>© 2024 UC Mart | Secure Payment Gateway</footer>
 </div>
 
-<!-- <script>
-const urlParams = new URLSearchParams(window.location.search);
-const amount = urlParams.get('amount') || '1';
-const userId = urlParams.get('user') || '';
-
-const upiId = "fftitangaming-1@oksbi";
-const upiName = "FFTitanGaming";
-
-/* Display amount text */
-document.getElementById('amountDisplay').innerText = `Pay INR ${amount}${userId ? ' (User ID: ' + userId + ')' : ''}`;
-
-/* On click Pay Now — redirect with amount */
-function redirectToPayment() {
-  const selected = document.querySelector('input[name="payment"]:checked');
-  if(!selected) { alert("Please select a payment method."); return; }
-
-  const upiWithAmount = `upi://pay?pa=${upiId}&pn=${upiName}&am=${amount}&cu=INR`;
-  window.location.href = upiWithAmount;
-}
-</script> -->
 <script>
 const urlParams = new URLSearchParams(window.location.search);
 const amount = urlParams.get('amount') || '1';
@@ -111,11 +108,11 @@ function redirectToPayment() {
     return; 
   }
 
-  // 🔹 Construct UPI link with amount
+  // Default: with amount
   let upiLink = `upi://pay?pa=${upiId}&pn=${upiName}&am=${amount}&cu=INR`;
 
-  // 🔸 For PhonePe — remove amount (to avoid ₹2000 limit issue)
-  if (selected.value === "phonepe") {
+  // PhonePe and Other UPI - no amount (they’ll scan or enter manually)
+  if (selected.value === "phonepe" || selected.value === "otherupi") {
     upiLink = `upi://pay?pa=${upiId}&pn=${upiName}&cu=INR`;
   }
 
